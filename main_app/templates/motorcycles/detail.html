@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Motorcycle Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ motorcycle.make }}</span>
+    <p>Model: {{ motorcycle.model }}</p>
+    <p>Year: {{ motorcycle.year }}</p>
+    <p>Color: {{ motorcycle.color }}</p>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'motorcycles_update' motorcycle.id %}">Edit</a>
+    <a href="{% url 'motorcycles_delete' motorcycle.id %}">Delete</a>
+  </div>
+
+</div>
+
+{% endblock %}
