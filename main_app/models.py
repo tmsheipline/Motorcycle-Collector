@@ -1,3 +1,4 @@
+# from turtle import color
 from django.db import models
 from django.urls import reverse
 from datetime import date
@@ -9,6 +10,15 @@ TIME = (
 )
 
 # Create your models here.
+class Helmet(models.Model):
+    type= models.CharField(max_length=25)
+    color= models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.type
+
+    def get_absolute_url(self):
+        return reverse('helmets_detail', kwargs={'pk': self.id})
 
 
 class Motorcycle(models.Model):
@@ -16,6 +26,7 @@ class Motorcycle(models.Model):
     model = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
     year = models.IntegerField()
+    helmets = models.ManyToManyField(Helmet)
 
     def __str__(self):
         return self.make
